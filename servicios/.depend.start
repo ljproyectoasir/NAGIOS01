@@ -1,0 +1,21 @@
+TARGETS = uuidd rsyslog killprocs motd expand-root apache2 nagios mysql xinetd google-accounts-manager google-clock-sync-manager google-address-manager google cron acpid ssh ntp rsync dbus exim4 bootlogs google-startup-scripts single rmnologin rc.local
+INTERACTIVE = apache2
+apache2: rsyslog
+nagios: rsyslog
+mysql: rsyslog
+xinetd: rsyslog
+google-accounts-manager: rsyslog
+google-clock-sync-manager: rsyslog
+google-address-manager: rsyslog
+google: rsyslog
+cron: rsyslog
+acpid: rsyslog
+ssh: rsyslog
+ntp: rsyslog
+rsync: rsyslog
+dbus: rsyslog
+exim4: rsyslog mysql
+google-startup-scripts: uuidd rsyslog apache2 nagios mysql exim4 xinetd google-accounts-manager google-clock-sync-manager google-address-manager motd bootlogs google cron acpid ssh expand-root ntp rsync dbus
+single: killprocs motd bootlogs
+rmnologin: uuidd rsyslog apache2 nagios mysql exim4 xinetd google-accounts-manager google-clock-sync-manager google-address-manager motd bootlogs google cron acpid ssh expand-root ntp rsync dbus
+rc.local: uuidd rsyslog apache2 nagios mysql exim4 xinetd google-accounts-manager google-clock-sync-manager google-address-manager motd bootlogs google cron acpid ssh expand-root ntp rsync dbus

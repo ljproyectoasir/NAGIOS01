@@ -1,0 +1,12 @@
+TARGETS = uuidd apache2 nagios xinetd google-accounts-manager google-clock-sync-manager google-address-manager exim4 google-startup-scripts urandom mysql sendsigs rsyslog umountnfs.sh hwclock.sh rpcbind networking umountfs umountroot halt reboot
+mysql: exim4
+sendsigs: uuidd apache2 nagios mysql exim4 xinetd google-startup-scripts
+rsyslog: sendsigs apache2 nagios mysql exim4 xinetd google-startup-scripts
+umountnfs.sh: sendsigs uuidd rsyslog apache2 nagios mysql exim4 xinetd google-startup-scripts
+hwclock.sh: uuidd rsyslog mysql
+rpcbind: umountnfs.sh
+networking: umountnfs.sh apache2 mysql exim4 rpcbind xinetd google-clock-sync-manager google-address-manager
+umountfs: uuidd hwclock.sh umountnfs.sh urandom apache2 networking nagios mysql exim4 rpcbind xinetd google-startup-scripts
+umountroot: umountfs
+halt: umountroot
+reboot: umountroot
